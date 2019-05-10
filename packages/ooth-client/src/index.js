@@ -141,6 +141,9 @@ class OothClient {
             socket.onclose = () => {}
             socket.onmessage = ({ data }) => {
                 const { user } = JSON.parse(data)
+                if(user == null){
+                    socket.close()
+                }    
                 return this.next(user)
             }
         }
